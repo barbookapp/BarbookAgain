@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.barbook.backend"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "backend",
+    "packageName": "com.barbook.backend",
+    "packageFolder": "com/barbook/backend",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OWE4NjJkYWY4MDdlZTlkMTYxODA1YjUwYzMyZDc4NTc2OTNjZmQ4MjQ3MWM1MGM3MjA0NjYxYTZjNWIwZTQ2MmQxYzMwNzYyYWUyM2QzOGEzOTY1NDhiYmE1MjQ5YTRiY2Y1NTkwMjVhOTRkNmQ3NmM4NGEyNjkyN2RlN2Y1ZDY=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "react",
+    "clientTheme": "slate",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1592686503806,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
