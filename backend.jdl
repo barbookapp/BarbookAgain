@@ -1,0 +1,116 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName backend
+    buildTool maven
+    cacheProvider ehcache
+    clientFramework react
+    clientPackageManager npm
+    clientTheme slate
+    clientThemeVariant primary
+    creationTimestamp 1592686503806
+    databaseType sql
+    devDatabaseType h2Disk
+    dtoSuffix DTO
+    embeddableLaunchScript false
+    enableHibernateCache true
+    enableSwaggerCodegen false
+    enableTranslation false
+    jhiPrefix jhi
+    jhipsterVersion "6.8.0"
+    jwtSecretKey "OWE4NjJkYWY4MDdlZTlkMTYxODA1YjUwYzMyZDc4NTc2OTNjZmQ4MjQ3MWM1MGM3MjA0NjYxYTZjNWIwZTQ2MmQxYzMwNzYyYWUyM2QzOGEzOTY1NDhiYmE1MjQ5YTRiY2Y1NTkwMjVhOTRkNmQ3NmM4NGEyNjkyN2RlN2Y1ZDY="
+    languages [en, fr]
+    messageBroker false
+    nativeLanguage en
+    otherModules []
+    packageName com.barbook.backend
+    prodDatabaseType postgresql
+    searchEngine elasticsearch
+    serverPort 8080
+    serviceDiscoveryType false
+    skipClient false
+    skipServer false
+    skipUserManagement false
+    testFrameworks []
+    useSass true
+    websocket false
+  }
+
+  entities Bottle, Brand, Category, Distillery, Favorite, MyBook, Parent, PrimaryBarrel, SecondaryBarrel, Spirit, SubCategory, UserHistory
+}
+
+entity Bottle {
+  name String,
+  abv String,
+  age String,
+  description TextBlob,
+  inBottle TextBlob,
+  photo ImageBlob
+}
+entity Brand {
+  name String,
+  description TextBlob
+}
+entity Category {
+  description String
+}
+entity Distillery {
+  name String,
+  description TextBlob
+}
+entity Favorite
+entity MyBook {
+  rating Rating
+}
+entity Parent {
+  name String,
+  description TextBlob
+}
+entity PrimaryBarrel {
+  description String
+}
+entity SecondaryBarrel {
+  description String
+}
+entity Spirit {
+  description String
+}
+entity SubCategory {
+  description String
+}
+entity UserHistory
+enum Rating {
+  BAD,
+  OKAY,
+  GOOD,
+  GREAT,
+  BEST
+}
+
+relationship OneToOne {
+  UserHistory{user(login)} to User with jpaDerivedIdentifier
+}
+relationship OneToMany {
+  UserHistory{myBook} to MyBook{userHistory}
+}
+relationship ManyToMany {
+  Bottle{spirit(description)} to Spirit{bottle},
+  Bottle{category(description)} to Category{bottle},
+  Bottle{subCategory(description)} to SubCategory{bottle},
+  Bottle{primaryBarrel(description)} to PrimaryBarrel{bottle},
+  Bottle{secondaryBarrel(description)} to SecondaryBarrel{bottle},
+  Bottle{brand} to Brand{bottle},
+  Bottle{distillery} to Distillery{bottle},
+  Brand{parent} to Parent{brand},
+  Distillery{parent} to Parent{distillery},
+  Distillery{brand} to Brand{distillery},
+  MyBook{favorite} to Favorite{myBook},
+  MyBook{bottle(name)} to Bottle{myBook}
+}
+
+paginate Bottle, Brand, Category, Distillery, Favorite, MyBook, Parent, PrimaryBarrel, SecondaryBarrel, Spirit, SubCategory with pagination
+service Bottle, Brand, Category, Distillery, Parent, PrimaryBarrel, SecondaryBarrel, Spirit, SubCategory with serviceImpl
+service UserHistory with serviceClass
+search Bottle, Favorite, MyBook, UserHistory with elasticsearch
+filter Bottle

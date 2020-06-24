@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        Added the constraints for entity Bottle.
+    -->
+    <changeSet id="20200620205800-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="bottle_id"
+                                 baseTableName="bottle_spirit"
+                                 constraintName="fk_bottle_spirit_bottle_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bottle"/>
+
+        <addForeignKeyConstraint baseColumnNames="spirit_id"
+                                 baseTableName="bottle_spirit"
+                                 constraintName="fk_bottle_spirit_spirit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="spirit"/>
+        
+        <addForeignKeyConstraint baseColumnNames="bottle_id"
+                                 baseTableName="bottle_category"
+                                 constraintName="fk_bottle_category_bottle_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bottle"/>
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="bottle_category"
+                                 constraintName="fk_bottle_category_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="category"/>
+        
+        <addForeignKeyConstraint baseColumnNames="bottle_id"
+                                 baseTableName="bottle_sub_category"
+                                 constraintName="fk_bottle_sub_category_bottle_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bottle"/>
+
+        <addForeignKeyConstraint baseColumnNames="sub_category_id"
+                                 baseTableName="bottle_sub_category"
+                                 constraintName="fk_bottle_sub_category_sub_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sub_category"/>
+        
+        <addForeignKeyConstraint baseColumnNames="bottle_id"
+                                 baseTableName="bottle_primary_barrel"
+                                 constraintName="fk_bottle_primary_barrel_bottle_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bottle"/>
+
+        <addForeignKeyConstraint baseColumnNames="primary_barrel_id"
+                                 baseTableName="bottle_primary_barrel"
+                                 constraintName="fk_bottle_primary_barrel_primary_barrel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="primary_barrel"/>
+        
+        <addForeignKeyConstraint baseColumnNames="bottle_id"
+                                 baseTableName="bottle_secondary_barrel"
+                                 constraintName="fk_bottle_secondary_barrel_bottle_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bottle"/>
+
+        <addForeignKeyConstraint baseColumnNames="secondary_barrel_id"
+                                 baseTableName="bottle_secondary_barrel"
+                                 constraintName="fk_bottle_secondary_barrel_secondary_barrel_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="secondary_barrel"/>
+        
+        <addForeignKeyConstraint baseColumnNames="bottle_id"
+                                 baseTableName="bottle_brand"
+                                 constraintName="fk_bottle_brand_bottle_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bottle"/>
+
+        <addForeignKeyConstraint baseColumnNames="brand_id"
+                                 baseTableName="bottle_brand"
+                                 constraintName="fk_bottle_brand_brand_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="brand"/>
+        
+        <addForeignKeyConstraint baseColumnNames="bottle_id"
+                                 baseTableName="bottle_distillery"
+                                 constraintName="fk_bottle_distillery_bottle_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bottle"/>
+
+        <addForeignKeyConstraint baseColumnNames="distillery_id"
+                                 baseTableName="bottle_distillery"
+                                 constraintName="fk_bottle_distillery_distillery_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="distillery"/>
+        
+    </changeSet>
+</databaseChangeLog>
