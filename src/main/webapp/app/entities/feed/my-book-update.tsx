@@ -13,7 +13,7 @@ import { IFavorite } from 'app/shared/model/favorite.model';
 import { getEntities as getFavorites } from 'app/entities/favorite/favorite.reducer';
 import { IBottle } from 'app/shared/model/bottle.model';
 import { getEntities as getBottles, getEntity as getBottle } from './feed.reducer';
-import { getEntity, updateEntity, createEntity, reset } from '../my-book/my-book.reducer';
+import { getEntity, updateEntity, createEntity, reset, getEntityForCurrentUser } from '../my-book/my-book.reducer';
 import { IMyBook } from 'app/shared/model/my-book.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
@@ -36,12 +36,12 @@ export const MyBookUpdate = (props: IMyBookUpdateProps) => {
     if (isNew) {
       props.reset();
     } else {
-      props.getEntity(props.match.params.id);
+      props.getEntityForCurrentUser();
     }
 
     props.getUserHistories();
     props.getFavorites();
-    props.getBottles();
+    // props.getBottles();
     // props.getBottleEntity(props.match.params.id);
   }, []);
 
@@ -202,6 +202,7 @@ const mapDispatchToProps = {
   updateEntity,
   createEntity,
   reset,
+  getEntityForCurrentUser,
   // getBottleEntity,
 };
 

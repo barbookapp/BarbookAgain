@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './feed.reducer';
+import { addBottle} from "app/entities/my-book/my-book.reducer";
+import { IBottleProps } from "app/entities/feed/feed";
 import { IBottle } from 'app/shared/model/bottle.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
@@ -17,16 +19,22 @@ export const FeedDetail = (props: IBottleDetailProps) => {
     props.getEntity(props.match.params.id);
   }, []);
 
+  const addToMyBook = (b: IBottle) => () => props.addBottle(b);
+
   const { bottleEntity, match } = props;
   return (
     <Row>
       <Col md="8">
         <h2>
           Bottle [<b>{bottleEntity.id}</b>]
-          <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />
-            &nbsp; Add to MyBook
-          </Link>
+          <Button onClick={addToMyBook(bottleEntity)} size ="sm">
+            <FontAwesomeIcon icon="plus" /> <span className="d-none d-md-inline">Add to MyBook</span>
+          </Button>
+
+          {/*<Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">*/}
+          {/*  <FontAwesomeIcon icon="plus" />*/}
+          {/*  &nbsp; Add to MyBook*/}
+          {/*</Link>*/}
         </h2>
         <dl className="jh-entity-details">
           <dt>
@@ -158,7 +166,7 @@ const mapStateToProps = ({ bottle }: IRootState) => ({
   bottleEntity: bottle.entity
 });
 
-const mapDispatchToProps = { getEntity };
+const mapDispatchToProps = { getEntity, addBottle };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
